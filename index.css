@@ -1,0 +1,134 @@
+/* initial value u can set it as you want */
+:root {
+  --startAngle: 120deg;
+}
+
+/* cant change initial value dynamically */
+@property --animation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 100deg;
+}
+
+/* dont touch it , necessary for initial corrections */
+.gradient {
+  /* background: conic-gradient(from var(--animation), #b2d8d8, #004c4c); */
+  background: conic-gradient(from var(--animation), #ccfbf1, #134e4a);
+
+  align-items: center;
+}
+
+.startt {
+  animation-name: startt;
+  animation-iteration-count: 1;
+  animation-duration: 1ms;
+  animation-fill-mode: forwards;
+}
+
+/* related to above animation */
+@keyframes startt {
+  to {
+    --animation: var(--startAngle);
+  }
+}
+
+/* for background effect */
+@property --backeffect {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.backeffect {
+  /* background: conic-gradient(from var(--backeffect), #b2d8d8, #004c4c); */
+  background: conic-gradient(from var(--backeffect), #ccfbf1, #134e4a);
+
+  align-items: center;
+  animation: circlee 10s linear infinite;
+  opacity: 0.1;
+}
+
+@keyframes circlee {
+  0% {
+    --backeffect: var(--startAngle);
+  }
+  100% {
+    --backeffect: calc(var(--startAngle) + 360deg);
+  }
+}
+
+/* will apply on time of scrolling */
+
+/* Animation Forward */
+.animationForward {
+  animation: rotate 2.5s linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.animationForwardMobile {
+  animation: rotate 1.5s linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes rotate {
+  0% {
+    --animation: var(--startAngle);
+  }
+  100% {
+    --animation: calc(var(--startAngle) + 360deg);
+  }
+}
+
+/* animation backward */
+.animationBackward {
+  animation: revRotate 2.5s linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.animationBackwardMobile {
+  animation: revRotate 1.5s linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes revRotate {
+  0% {
+    --animation: var(--startAngle);
+  }
+  100% {
+    --animation: calc(var(--startAngle) - 360deg);
+  }
+}
+
+/* scrollbar */
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* starting animation */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.container span {
+  position: relative;
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #000;
+  border-radius: 50%;
+}
